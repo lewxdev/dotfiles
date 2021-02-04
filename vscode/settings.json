@@ -1,0 +1,112 @@
+// DEST: ~/Library/Application\ Support/Code/User/settings.json
+
+{
+	// Editor
+		// Customizations
+		"editor.rulers": [ 75, 100 ],
+		"editor.lineNumbers": "interval",
+		"editor.minimap.enabled": false,
+		// Indentation
+		"editor.detectIndentation": false,
+		"editor.insertSpaces": false,
+		"editor.tabSize": 4,
+		// Font & Text Components
+		"editor.fontFamily": "'Iosevka Idios', 'Monaco', monospace",
+		"editor.fontWeight": "500",
+		"editor.fontSize": 20,
+		"editor.fontLigatures": true,
+		"editor.cursorStyle": "block-outline",
+		"editor.occurrencesHighlight": false,
+		// Language Specific
+		"[python]": {
+			"editor.rulers": [ 72, 79 ],
+			"editor.insertSpaces": true,
+			"files.insertFinalNewline": true,
+			"files.trimFinalNewlines": true
+		},
+		"[yaml]": {
+			"editor.insertSpaces": true,
+			"editor.tabSize": 2
+		},
+		"[django-html]": {
+			"editor.defaultFormatter": "vscode.html-language-features"
+		},
+
+	// Workbench Customizations
+	"workbench.colorTheme": "One Dark Darker",
+	"workbench.iconTheme": "spectrum-vscode-icons",
+	"workbench.fontAliasing": "antialiased",
+	"workbench.editor.tabCloseButton": "off",
+	"workbench.startupEditor": "newUntitledFile",
+	"workbench.settings.editor": "json",
+
+	// Color Customizations
+	// color theme: One Dark Darker
+	// base color: #181A1F
+	"workbench.colorCustomizations": {
+		"tab.hoverBackground": "#101114",
+		"tab.activeBackground": "#15171B",
+		"breadcrumb.background": "#15171B",
+		"editor.lineHighlightBackground": "#15171B",
+		"editorIndentGuide.background": "#353944",
+		"editorIndentGuide.activeBackground": "#434857",
+		"icon.foreground": "#C8CCD5",
+		"button.background": "#272A32",
+		"sideBar.background": "#15171B",
+		"sideBarSectionHeader.background": "#15171B",
+		"activityBar.background": "#15171B",
+		"statusBar.border": "#353944",
+		"titleBar.border": "#353944",
+		"sideBar.border": "#353944"
+	},
+
+	// Emmet & Auto-complete
+	"emmet.includeLanguages": {
+		"django-html": "html"
+	},
+
+	// Explorer
+	"explorer.confirmDragAndDrop": false,
+	"explorer.confirmDelete": false,
+	"explorer.compactFolders": false,
+	"explorer.incrementalNaming": "smart",
+	"explorer.sortOrder": "type",
+
+	// Window
+	"window.zoomLevel": 1,
+	"window.openFoldersInNewWindow": "on",
+	"window.restoreWindows": "folders",
+	"window.title": "",
+
+	// Breadcrumbs
+	"breadcrumbs.icons": false,
+	"breadcrumbs.filePath": "off",
+
+	// Files
+	"files.autoSave": "afterDelay",
+	"files.enableTrash": false,
+	"files.hotExit": "off",
+	"files.simpleDialog.enable": true,
+	"files.trimTrailingWhitespace": true,
+
+	// Integrated Terminal
+	"terminal.integrated.fontSize": 16,
+	"terminal.integrated.cursorBlinking": true,
+
+	// Python
+	"python.pythonPath": "/Users/lewx/.pyenv/versions/3.9.0/bin/python",
+	"python.linting.flake8Enabled": true,
+	"python.showStartPage": false,
+
+	"task.problemMatchers.neverPrompt": {
+		"shell": true
+	},
+	"terminal.integrated.shell.osx": "/bin/zsh",
+	"liveServer.settings.donotShowInfoMsg": true,
+	"remote.SSH.useLocalServer": false,
+	"remote.SSH.remotePlatform": {
+		"MORPHEUS/local": "linux",
+		"MORPHEUS/remote": "linux"
+	},
+	"python.languageServer": "Pylance"
+}
