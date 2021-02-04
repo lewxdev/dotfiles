@@ -1,0 +1,18 @@
+alias chrome="app ${DIR[APPS]}/Google\ Chrome.app"
+alias discord/atelisis="app ${DIR[APPS]}/Discord.app"
+alias discord/lewx="app ${DIR[APPS]}/Discord\ Secondary.app"
+alias gband="app ${DIR[APPS]}/GarageBand.app"
+alias gsync="app ${DIR[APPS]}/Backup\ and\ Sync.app"
+alias logi="app ${DIR[APPS]}/Logi\ Options.app"
+alias mc="app ${DIR[APPS]}/Minecraft.app"
+
+alias at="app ${DIR[CHROME_APPS]}/Audiotool\ Studio.app"
+alias devdocs="app ${DIR[CHROME_APPS]}/DevDocs.app"
+alias ig="app ${DIR[CHROME_APPS]}/Instagram.app"
+alias tinder="app ${DIR[CHROME_APPS]}/Tinder.app"
+alias toh="app ${DIR[CHROME_APPS]}/Tower\ of\ Hanoi.app"
+alias twitter="app ${DIR[CHROME_APPS]}/Twitter.app"
+alias photos="app ${DIR[CHROME_APPS]}/Google\ Photos.app"
+alias messages="app ${DIR[CHROME_APPS]}/Messages.app"
+
+alias booster="java -jar ~/.audiotool/launcher.jar"

@@ -3,21 +3,21 @@
 # Environment Variables: Constants
 declare -A DIR
 DIR[DEV]=$HOME/Developer
-DIR[SH]=${DIR[DEV]}/Resources/shell
-DIR[SHMODS]=${DIR[SH]}/modules
-DIR[SHEXEC]=${DIR[SHMODS]}/exec
+DIR[DOTF]=${DIR[DEV]}/Projects/dotfiles
+DIR[SH]=${DIR[DOTF]}/shell
+DIR[SHEXEC]=${DIR[SH]}/exec
 DIR[APPS]=/Applications
 
 export DIR
 export PYENV=$HOME/.pyenv
-export ZSH=${DIR[SH]}/omz
+export ZSH=$HOME/.oh-my-zsh
 export PATH="${DIR[SHEXEC]}:/usr/local/sbin:$PATH"
 
 # Sources
 source $ZSH/preferences.sh
 source $PYENV/config.sh
 
-for module in $(find ${DIR[SHMODS]} -name "*.sh"); do
+for module in $(find ${DIR[SH]} -name "*.sh"); do
 	source $module
 done
 

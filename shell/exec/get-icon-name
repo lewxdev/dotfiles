@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+import sys
+import plistlib
+
+
+def main():
+    app_plist = {}
+    app_plist["dir"], = sys.argv[1:2]
+    with open(app_plist["dir"], "rb") as file:
+        app_plist["file"] = plistlib.load(file)
+    app_plist["icon_name"] = app_plist["file"]["CFBundleIconFile"]
+    print(app_plist["icon_name"])
+
+
+if __name__ == "__main__":
+    main()

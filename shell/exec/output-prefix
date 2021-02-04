@@ -1,0 +1,12 @@
+#!/usr/bin/env python3
+import sys
+
+
+def main():
+    text = str(sys.argv[1:2][0])
+    code = str(sys.argv[2:3][0])
+    print(f"[\\e[{code}m{text}\\e[0m]")
+
+
+if __name__ == "__main__":
+    main()
