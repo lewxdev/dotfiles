@@ -1,0 +1,55 @@
+# DEST: ~/.gitconfig
+
+[user]
+	name = J. Lewis
+	email = inquiries.lewis+dev@gmail.com
+[core]
+	excludesfile = ~/.gitignore_global
+[alias]
+	launch = !zsh -c "git add -A && git commit -m 'Initial commit' && git push -u origin master"
+	# Staging
+	aa = add -A
+	af = !zsh -c "git add $@"
+	# Pushing
+	ps = push
+	pb = !zsh -c "git push -u origin $1"
+	pu = pb master
+
+	get-origin = remote get-url origin
+	fix-commits = "!f() { VAR=$1; OLD=$2; NEW=$3; shift 3; git filter-branch --env-filter \"if [[ \\\"$`echo $VAR`\\\" = '$OLD' ]]; then export $VAR='$NEW'; fi\" $@; }; f"
+
+
+# Git URLs
+# HTTPS (User)
+[url "https://github.com/lewxdev/"]
+	insteadOf = gh/@/
+	insteadOf = github/lewxdev/
+[url "https://gitlab.com/lewxdev/"]
+	insteadOf = gl/@/
+	insteadOf = gitlab/lewxdev/
+# SSH (User)
+[url "git@github.com:lewxdev/"]
+	insteadOf = gh/@:
+	insteadOf = github/lewxdev:
+[url "git@gitlab.com:lewxdev"]
+	insteadOf = gl/@:
+	insteadOf = gitlab/lewxdev:
+
+# HTTPS
+[url "https://gist.github.com/"]
+	insteadOf = gist/
+[url "https://github.com/"]
+	insteadOf = gh/
+	insteadOf = github/
+[url "https://gitlab.com/"]
+	insteadOf = gl/
+	insteadOf = gitlab/
+# SSH
+[url "git@gist.github.com:"]
+	insteadOf = gist:
+[url "git@github.com:"]
+	insteadOf = gh:
+	insteadOf = github:
+[url "git@gitlab.com:"]
+	insteadOf = gl:
+	insteadOf = gitlab:
