@@ -1,4 +1,4 @@
-// DEST: ~/Library/Application\ Support/Hyper/hyper/.hyper.js
+// DEST: ~/Library/Application\ Support/Hyper/.hyper.js
 // Configuration flags: https://hyper.is/#cfg
 
 module.exports = {
@@ -9,6 +9,21 @@ module.exports = {
 
 			// If `true`, Hyper will be set as the default protocol client for SSH
 			defaultSSHApp: true,
+
+		// Plugins
+			hyperline: {
+				// Add plugins in display order (from left to right)
+				plugins: [
+					"spotify",
+					"hostname",
+					"ip",
+					"network",
+					"memory",
+					"Uptime",
+					"cpu",
+					"battery"
+				]
+			},
 
 		// Font/Text
 			// The default size in pixels for the terminal
@@ -69,7 +84,13 @@ module.exports = {
 
 		// CSS
 			// Custom CSS to include in the main window
-			css: "",
+			css: `
+				.line {
+					justify-content: center;
+					padding: 1.5em 0;
+					font-weight: 100;
+				}
+				`,
 
 			// Custom CSS to include in the terminal window
 			termCSS: "",
@@ -82,36 +103,36 @@ module.exports = {
 			// The names of the keys represent the "ANSI 16".
 			// Use an array instead of a color map object if providing the full color palette,
 			// including the 6 x 6 color cubes and the grayscale map.
+			// source: https://hyper.is/store/hyper-one-dark/source?index.js
 			colors: {
-				black: '#000000',
-				red: '#C51E14',
-				green: '#1DC121',
-				yellow: '#C7C329',
-				blue: '#0A2FC4',
-				magenta: '#C839C5',
-				cyan: '#20C5C6',
-				white: '#C7C7C7',
-				lightBlack: '#686868',
-				lightRed: '#FD6F6B',
-				lightGreen: '#67F86F',
-				lightYellow: '#FFFA72',
-				lightBlue: '#6A76FB',
-				lightMagenta: '#FD7CFC',
-				lightCyan: '#68FDFE',
-				lightWhite: '#FFFFFF',
+				black		: "#000000",
+				red         : "#E06C75",
+				green       : "#98C379",
+				yellow      : "#D19A66",
+				blue        : "#56B6C2",
+				magenta     : "#C678DD",
+				cyan        : "#56B6C2",
+				white       : "#D0D0D0",
+				lightBlack  : "#808080",
+				lightRed    : "#E06C75",
+				lightGreen  : "#98C379",
+				lightYellow : "#D19A66",
+				lightBlue   : "#56B6C2",
+				lightMagenta: "#C678DD",
+				lightCyan   : "#56B6C2"
 			},
 
 			// The color of the main text of the terminal
-			foregroundColor: "#ffffff",
+			foregroundColor: "#FFFFFF",
 
 			// The color and opacity of the window and main terminal background
-			backgroundColor: "#000000ff",
+			backgroundColor: "#181A1FF0",
 
 			// The background color/opacity of the text selection in terminal
-			selectionColor: "#333333ff",
+			selectionColor: "#FFFFFF40",
 
 			// border color (window, tabs)
-			borderColor: "#333333",
+			borderColor: "#353944",
 
 		// Shell
 			// A path to a custom shell to run when Hyper starts a new session
@@ -133,12 +154,15 @@ module.exports = {
 
 	// A list of plugins to fetch and install from npm
 	// format: [@org/]project[#version]
-	plugins: [],
+	plugins: [
+		"hyperline",  // https://www.npmjs.com/package/hyperline
+		"hypercwd",  // https://www.npmjs.com/package/hypercwd
+		"hyper-quit"  // https://www.npmjs.com/package/hyper-quit
+	],
 
-	// Load indev plugins from `~/.hyper_plugins/local/`
+	// Load indev plugins from `/.hyper_plugins/local/`
 	localPlugins: [],
 
-	keymaps: {
-		"window:devtools": "cmd+alt+i"
-	},
-};
+	// https://github.com/vercel/hyper/blob/master/app/keymaps/linux.json
+	keymaps: {},
+}
