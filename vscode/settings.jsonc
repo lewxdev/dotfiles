@@ -41,7 +41,6 @@
 	"workbench.settings.editor": "json",
 
 	// Color Customizations
-	// color theme: One Dark Darker
 	// base color: #181A1F
 	"workbench.colorCustomizations": {
 		"tab.hoverBackground": "#101114",
@@ -94,6 +93,7 @@
 	"terminal.integrated.cursorBlinking": true,
 
 	// Python
+	// "python.languageServer": "Pylance",
 	"python.pythonPath": "/Users/lewx/.pyenv/versions/3.9.0/bin/python",
 	"python.linting.flake8Enabled": true,
 	"python.showStartPage": false,
@@ -107,6 +107,5 @@
 	"remote.SSH.remotePlatform": {
 		"MORPHEUS/local": "linux",
 		"MORPHEUS/remote": "linux"
-	},
-	"python.languageServer": "Pylance"
+	}
 }
