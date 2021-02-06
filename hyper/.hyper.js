@@ -1,5 +1,6 @@
-// DEST: ~/Library/Application\ Support/Hyper/.hyper.js
+// DEST: ~/Library/Application\ Support/Hyper/hyper/.hyper.js
 // Configuration flags: https://hyper.is/#cfg
+// TODO: implement a python script to add new configuration flags to exports
 
 module.exports = {
 	config: {

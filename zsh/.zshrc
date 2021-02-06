@@ -1,23 +1,41 @@
 # DEST: ~/.zshrc
 
-# Environment Variables: Constants
-declare -A DIR
-DIR[DEV]=$HOME/Developer
-DIR[DOTF]=${DIR[DEV]}/Projects/dotfiles
-DIR[SH]=${DIR[DOTF]}/shell
-DIR[SHEXEC]=${DIR[SH]}/exec
-DIR[APPS]=/Applications
+# Environment Variables
+# Directories
+declare -xrA DIR=(
+	# Applications
+	[APPS]=/Applications
+	[PWA]=~/Applications/Chrome\ Apps.localized
 
-export DIR
-export PYENV=$HOME/.pyenv
-export ZSH=$HOME/.oh-my-zsh
-export PATH="${DIR[SHEXEC]}:/usr/local/sbin:$PATH"
+	# Documents
+	[DOCS]=~/Documents
+	[DLS]=~/Downloads
+	[DRIVE]=~/Google\ Drive
 
-# Sources
-source $ZSH/preferences.sh
+	# Minecraft
+	[MC]=~/Library/Application\ Support/minecraft
+	[MCS]=~/Library/Application\ Support/minecraft_release
+	[MCC]=~/Library/Application\ Support/minecraft_snapshots
+
+	# Developer Modules
+	[DEV]=~/Developer
+	[DOTF]=~/Developer/dotfiles
+	[SHM]=~/Developer/dotfiles/shell
+	[SHX]=~/Developer/dotfiles/shell/exec
+)
+
+# Globals
+export PATH="${DIR[SHX]}:/usr/local/sbin:$PATH"
+export EDITOR=/usr/bin/nano
+export VISUAL=/usr/local/bin/code
+
+export PYENV=~/.pyenv
+export ZSH=~/.oh-my-zsh
+
 source $PYENV/config.sh
+source $ZSH/preferences.sh
 
-for module in $(find ${DIR[SH]} -name "*.sh"); do
+for module in $(find ${DIR[SHM]} -name "*.sh"); do
 	source $module
 done
 
