@@ -1,36 +1,40 @@
-// DEST: ~/Library/Application\ Support/Code/User/settings.json
+// DEST:~/Library/Application Support/Code/User/settings.json
 
 {
 	// Editor
-		// Customizations
-		"editor.rulers": [ 75, 100 ],
-		"editor.lineNumbers": "interval",
-		"editor.minimap.enabled": false,
-		// Indentation
-		"editor.detectIndentation": false,
-		"editor.insertSpaces": false,
-		"editor.tabSize": 4,
-		// Font & Text Components
-		"editor.fontFamily": "'Iosevka Idios', 'Monaco', monospace",
-		"editor.fontWeight": "500",
-		"editor.fontSize": 20,
-		"editor.fontLigatures": true,
-		"editor.cursorStyle": "block-outline",
-		"editor.occurrencesHighlight": false,
-		// Language Specific
-		"[python]": {
-			"editor.rulers": [ 72, 79 ],
-			"editor.insertSpaces": true,
-			"files.insertFinalNewline": true,
-			"files.trimFinalNewlines": true
-		},
-		"[yaml]": {
-			"editor.insertSpaces": true,
-			"editor.tabSize": 2
-		},
-		"[django-html]": {
-			"editor.defaultFormatter": "vscode.html-language-features"
-		},
+	// Customizations
+	"editor.rulers": [80, 100],
+	"editor.lineNumbers": "interval",
+	"editor.minimap.enabled": false,
+	"editor.bracketPairColorization.enabled": false,
+	// Indentation
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.tabSize": 4,
+	// Font & Text Components
+	"editor.fontFamily": "'Iosevka Idios', 'Monaco', monospace",
+	"editor.fontWeight": "500",
+	"editor.fontSize": 20,
+	"editor.fontLigatures": true,
+	"editor.cursorStyle": "block-outline",
+	"editor.occurrencesHighlight": false,
+	"editor.renderWhitespace": "trailing",
+
+	// Language Specific
+	"[python]": {
+		"editor.rulers": [72, 79],
+		"editor.insertSpaces": true,
+		"files.insertFinalNewline": true,
+		"files.trimFinalNewlines": true,
+		"editor.defaultFormatter": "ms-python.python"
+	},
+	"[yaml]": {
+		"editor.insertSpaces": true,
+		"editor.tabSize": 2
+	},
+	"[django-html]": {
+		"editor.defaultFormatter": "vscode.html-language-features"
+	},
 
 	// Workbench Customizations
 	"workbench.colorTheme": "One Dark Darker",
@@ -70,9 +74,6 @@
 	"explorer.compactFolders": false,
 	"explorer.incrementalNaming": "smart",
 	"explorer.sortOrder": "type",
-
-	// Window
-	"window.zoomLevel": 1,
 	"window.openFoldersInNewWindow": "on",
 	"window.restoreWindows": "folders",
 	"window.title": "",
@@ -80,9 +81,6 @@
 	// Breadcrumbs
 	"breadcrumbs.icons": false,
 	"breadcrumbs.filePath": "off",
-
-	// Files
-	"files.autoSave": "afterDelay",
 	"files.enableTrash": false,
 	"files.hotExit": "off",
 	"files.simpleDialog.enable": true,
@@ -93,19 +91,56 @@
 	"terminal.integrated.cursorBlinking": true,
 
 	// Python
-	// "python.languageServer": "Pylance",
-	"python.pythonPath": "/Users/lewx/.pyenv/versions/3.9.0/bin/python",
+	"python.languageServer": "Pylance",
+	"python.experiments.optOutFrom": ["pythonDeprecatePythonPath"],
+	"python.pythonPath": "~/.pyenv/versions/3.9.0/bin/python",
+	"python.venvFolders": ["~/.local/share/virtualenvs"],
 	"python.linting.flake8Enabled": true,
 	"python.showStartPage": false,
 
 	"task.problemMatchers.neverPrompt": {
 		"shell": true
 	},
-	"terminal.integrated.shell.osx": "/bin/zsh",
 	"liveServer.settings.donotShowInfoMsg": true,
 	"remote.SSH.useLocalServer": false,
 	"remote.SSH.remotePlatform": {
 		"MORPHEUS/local": "linux",
 		"MORPHEUS/remote": "linux"
-	}
+	},
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"workbench.editorAssociations": {
+		"*.ipynb": "jupyter.notebook.ipynb"
+	},
+
+	// Prettier Formatting
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"prettier.printWidth": 80,
+	"prettier.tabWidth": 4,
+	"prettier.useTabs": true,
+	"prettier.semi": false,
+	"prettier.trailingComma": "es5",
+	"prettier.jsxBracketSameLine": true,
+	"prettier.useEditorConfig": false,
+	"editor.formatOnSave": true,
+	"terminal.explorerKind": "external",
+	"terminal.external.osxExec": "/Users/lewx/Applications/Hyper.app",
+	"files.associations": {
+		"*.html": "html"
+	},
+	"cSpell.userWords": ["freepik", "mixins", "pinterest", "verbage"],
+	"[json]": {
+		"editor.defaultFormatter": "vscode.json-language-features"
+	},
+	"workbench.editor.untitled.hint": "hidden",
+	"window.zoomLevel": 2,
+	"terminal.integrated.tabs.enabled": true,
+	"python.defaultInterpreterPath": "/Users/lewx/.pyenv/versions/3.9.0/bin/python",
+	"security.workspace.trust.untrustedFiles": "open",
+	"jupyter.interactiveWindowMode": "perFile",
+	"jupyter.askForKernelRestart": false,
+	"cSpell.ignoreWords": ["dotenv"],
+	"liveServer.settings.donotVerifyTags": true,
+	"files.autoSave": "afterDelay",
+	"redhat.telemetry.enabled": false,
+	"breadcrumbs.enabled": false
 }

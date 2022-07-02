@@ -1,0 +1,47 @@
+# DEST:~/.zshrc
+
+# Environment Variables
+# Directories
+declare -xrA DIR=(
+	# Applications
+	[APPS]=/Applications
+	[PWAS]=~/Applications/Chrome\ Apps.localized
+
+	# Documents
+	[DOCS]=~/Documents
+	[DLS]=~/Downloads
+	[DRIVE]=~/Google\ Drive
+
+	# Developer Modules
+	[DEV]=~/Developer
+	[DOTF]=~/Developer/dotfiles
+	[SHM]=~/Developer/dotfiles/shell
+	[SHX]=~/Developer/dotfiles/shell/exec
+)
+
+local VSCBIN=${DIR[APPS]}/Visual\ Studio\ Code.app/Contents/Resources/app/bin
+export PATH="${DIR[SHX]}:$PATH:$VSCBIN"
+export EDITOR=/usr/bin/nano
+export VISUAL=$VSCBIN/code
+
+for module in $(find ${DIR[SHM]} -name "*.sh"); do
+	source $module
+done
+
+# pyenv
+local PYENV_DIR=~/.pyenv
+
+if [[ -d $PYENV_DIR ]]; then
+	export PYENV=~/.pyenv
+	export PATH=$PYENV/bin:$PATH
+	eval "$(pyenv init -)"
+	eval "$(pyenv virtualenv-init -)"
+fi
+
+# oh-my-zsh
+local OMZ_DIR=~/.oh-my-zsh
+
+if [[ -d $OMZ_DIR ]]; then
+	export ZSH=$OMZ_DIR
+	source ${DIR[DOTF]}/oh-my-zsh/preferences.sh
+fi
