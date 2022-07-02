@@ -1,5 +1,7 @@
 # Developer
 alias dotfiles/="cdls \"${DIR[DOTF]}/\""
+alias lusego="cd ${DIR[DEV]}/projects/archive/lusego"
+alias lusego-run="lusego && npm start"
 
 # Google
 alias gd/="cdls \"${DIR[DRIVE]}/\""

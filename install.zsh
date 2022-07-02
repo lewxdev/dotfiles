@@ -211,4 +211,4 @@ if (( $@[(I)--links] )) || [[ $# -eq 0 ]]; then
 fi
 
 # Complete installation with the welcome screen :)
-# source ~/.zshrc
+source ~/.zshrc
