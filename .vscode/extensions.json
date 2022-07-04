@@ -1,0 +1,7 @@
+// Learn more https://go.microsoft.com/fwlink/?LinkId=827846
+{
+	"recommendations": [
+		"huuums.vscode-fast-folder-structure",
+		"streetsidesoftware.code-spell-checker"
+	]
+}

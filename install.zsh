@@ -50,9 +50,8 @@ declare -rA INSTALL_URIS=(
 )
 
 # Provides a formatted indicator for commands run by this script
-alias output-prefix=./shell/exec/output-prefix
-local prefix=$(output-prefix "dotfiles-install" 34)
-alias output='f(){ if [[ $# -gt 0 ]]; then echo "$prefix" "$@"; else echo; fi; unset -f f; }; f'
+local prefix=$(./src/bin/pre dotfiles-install -c blue)
+output() { if [[ $# -gt 0 ]]; then echo -e $prefix "$@"; else echo; fi; }
 
 # TODO: Implement argument validation
 
@@ -66,7 +65,7 @@ if (( $@[(I)--brew] )) || [[ $# -eq 0 ]]; then
 	which -s brew &>/dev/null
 	if [[ $? != 0 ]]; then
 		output "Homebrew installation couldn't be found. Attempting install..."
-		/bin/bash -c "$(curl -fsSL ${INSTALL_URIS[homebrew]})"
+		/bin/bash -c "$(curl -fsSL ${INSTALL_URIS[homebrew]})" && brew update
 	else
 		output "Homebrew already installed. Attempting update..."
 		brew update
@@ -154,30 +153,30 @@ if (( $@[(I)--vscode-extensions] )) || [[ $# -eq 0 ]]; then
 	fi
 fi
 
-# oh-my-zsh installation...
+# Oh My Zsh installation...
 
 if (( $@[(I)--omz] )) || [[ $# -eq 0 ]]; then
-	output "Checkiing if oh-my-zsh is installed..."
+	output "Checkiing if Oh My Zsh is installed..."
 
 	if [[ -d $ZSH ]]; then
-		output "oh-my-zsh is already installed. Attempting upgrade..."
+		output "Oh My Zsh is already installed. Attempting upgrade..."
 		$ZSH/tools/upgrade.sh
 	else
-		output "oh-my-zsh installation couldn't be found. Attempting install..."
+		output "Oh My Zsh installation couldn't be found. Attempting install..."
 		sh -c "$(curl -fsSL ${INSTALL_URIS[omz]})"
 	fi
 	output
 fi
 
-# oh-my-zsh plugins installation...
+# Oh My Zsh plugins installation...
 
 if (( $@[(I)--omz-plugins] )) || [[ $# -eq 0 ]]; then
-	output "Attempting oh-my-zsh plugin installations..."
+	output "Attempting Oh My Zsh plugin installations..."
 
 	# https://github.com/zsh-users/zsh-syntax-highlighting/
 	local target_dir=${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 	if [[ -d $target_dir ]]; then
-		output "oh-my-zsh plugin: \"zsh-syntax-highlighting\" is already installed."
+		output "Oh My Zsh plugin: \"zsh-syntax-highlighting\" is already installed."
 	else
 		git clone ${INSTALL_URIS[zsh_syntax_highlighting]} $target_dir
 	fi
@@ -185,13 +184,14 @@ if (( $@[(I)--omz-plugins] )) || [[ $# -eq 0 ]]; then
 fi
 
 # Configuration files setup...
-# TODO: Implement automatic pushes for related file changes
+# TODO: Add logging to track old symlinks, installations, etc.
+# TODO: Move symlink management to zshrc in order to stay in sync
 
-if (( $@[(I)--links] )) || [[ $# -eq 0 ]]; then
+if (( $@[(I)--symlinks] )) || [[ $# -eq 0 ]]; then
 	output "Installing symlinks to configuration files..."
 
-	for file in $(find . -type f ! \( -path "./.*" -o -path "./shell/*" \)); do
-		designator=$(head -1 $file)
+	for file in $(find . -type f ! \( -path "./.*" -o -path "./src/*" \)); do
+		designator=$(head -2 $file)
 
 		if [[ $designator =~ "^.+DEST:.+$" ]]; then
 			reference=${designator#*DEST:}
@@ -210,5 +210,8 @@ if (( $@[(I)--links] )) || [[ $# -eq 0 ]]; then
 	done
 fi
 
+# TODO: Implement automatic pushes for related file changes
+
 # Complete installation with the welcome screen :)
 source ~/.zshrc
+unset output

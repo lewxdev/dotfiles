@@ -1,38 +1,42 @@
+#!/bin/zsh
 # DEST:~/.zshrc
 
-# Environment Variables
-# Directories
+# Environment constants...
+
+# An associative array of common directories
+# accessed like "${DIR[KEY]}"
 declare -xrA DIR=(
 	# Applications
 	[APPS]=/Applications
 	[PWAS]=~/Applications/Chrome\ Apps.localized
 
 	# Documents
-	[DOCS]=~/Documents
+	[DESK]=~/Desktop
 	[DLS]=~/Downloads
-	[DRIVE]=~/Google\ Drive
+	[DOCS]=~/Documents
 
 	# Developer Modules
 	[DEV]=~/Developer
-	[DOTF]=~/Developer/dotfiles
-	[SHM]=~/Developer/dotfiles/shell
-	[SHX]=~/Developer/dotfiles/shell/exec
+	[DOTF]=~/dotfiles
+	[SHM]=~/dotfiles/src
+	[SHB]=~/dotfiles/src/bin
+	[SHS]=~/dotfiles/src/scripts
 )
 
+# Paths, etc.
 local VSCBIN=${DIR[APPS]}/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-export PATH="${DIR[SHX]}:$PATH:$VSCBIN"
+export PATH=$PATH:$VSCBIN
 export EDITOR=/usr/bin/nano
 export VISUAL=$VSCBIN/code
 
-for module in $(find ${DIR[SHM]} -name "*.sh"); do
-	source $module
-done
+# Conditional setup...
+# Setting up tools conditionally based on their installation
+# reduces errors at runtime
 
 # pyenv
 local PYENV_DIR=~/.pyenv
-
 if [[ -d $PYENV_DIR ]]; then
-	export PYENV=~/.pyenv
+	export PYENV=$PYENV_DIR
 	export PATH=$PYENV/bin:$PATH
 	eval "$(pyenv init -)"
 	eval "$(pyenv virtualenv-init -)"
@@ -40,8 +44,25 @@ fi
 
 # oh-my-zsh
 local OMZ_DIR=~/.oh-my-zsh
-
 if [[ -d $OMZ_DIR ]]; then
 	export ZSH=$OMZ_DIR
-	source ${DIR[DOTF]}/oh-my-zsh/preferences.sh
+	source ${DIR[DOTF]}/oh-my-zsh/preferences.zsh
 fi
+
+# Source customizations...
+
+# Ensure all files in "src/bin" are executable
+for bin in $(find ${DIR[SHB]} -type f -not -name "*.*"); do
+	if [[ ! -x $bin ]]; then
+		chmod +x $bin
+	fi
+done
+export PATH=${DIR[SHB]}:$PATH
+
+# Source all custom functions, aliases, etc.
+for module in $(find ${DIR[SHM]} -type f -name "*.zsh"); do
+	# Added a conditional to ignore certain files w/ designator
+	if [[ ! $(head -2 $module) =~ "^# SOURCE-IGNORE$" ]]; then
+		source $module
+	fi
+done

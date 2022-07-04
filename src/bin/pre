@@ -1,0 +1,107 @@
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from enum import Enum
+
+"""
+`pre` command
+Returns a zsh-ready string for CLI prefixes (colored names surrounded by square
+brackets "[]"). Helps denote command output and info from custom CLIs in large
+programs.
+"""
+
+
+# Color scheme via:
+# https://chrisyeh96.github.io/2020/03/28/terminal-colors.html#my-preferred-color-scheme
+class COLOR_SCHEME:
+    class Color(str, Enum):
+        BLACK = "black"
+        GRAY = "gray"
+        RED = "red"
+        GREEN = "green"
+        YELLOW = "yellow"
+        BLUE = "blue"
+        MAGENTA = "magenta"
+        CYAN = "cyan"
+        WHITE = "white"
+        LIGHT_RED = "light-red"
+        LIGHT_GREEN = "light-green"
+        LIGHT_YELLOW = "light-yellow"
+        LIGHT_BLUE = "light-blue"
+        LIGHT_MAGENTA = "light-magenta"
+        LIGHT_CYAN = "light-cyan"
+        LIGHT_GRAY = "light-gray"
+
+        def __str__(self):
+            return self.value
+
+    MAP = {
+        Color.BLACK: (0, 0, 0),
+        Color.GRAY: (85, 87, 83),
+        Color.RED: (204, 0, 0),
+        Color.GREEN: (78, 154, 6),
+        Color.YELLOW: (196, 160, 0),
+        Color.BLUE: (114, 159, 207),
+        Color.MAGENTA: (117, 80, 123),
+        Color.CYAN: (6, 152, 154),
+        Color.WHITE: (255, 255, 255),
+        Color.LIGHT_RED: (239, 41, 41),
+        Color.LIGHT_GREEN: (138, 226, 52),
+        Color.LIGHT_YELLOW: (252, 233, 79),
+        Color.LIGHT_BLUE: (50, 175, 255),
+        Color.LIGHT_MAGENTA: (173, 127, 168),
+        Color.LIGHT_CYAN: (52, 226, 226),
+        Color.LIGHT_GRAY: (211, 215, 207),
+    }
+
+
+def create_sequence(text: str, *params: int,
+                    color: COLOR_SCHEME.Color = None, reset: bool = True):
+    """Creates a simple ANSI escape sequence for terminal coloring
+    [Learn more](https://en.wikipedia.org/wiki/ANSI_escape_code)
+    """
+
+    color_params = (38, 2, *COLOR_SCHEME.MAP[color]) if color else None
+    parsed_params = ";".join(map(lambda p: f"{p}", color_params or params))
+    reset_suffix = r"\e[0m" if reset else ""
+
+    return rf"\e[{parsed_params}m{text}{reset_suffix}"
+
+
+def get_cli_args():
+    """Process the provided command-line arguments and return a valid
+    Namespace for the CLI
+    """
+
+    parser = ArgumentParser(description="Produces output prefixes for CLI")
+    parser.add_argument("name", nargs="+", help="The name of the program")
+    params = parser.add_mutually_exclusive_group(required=True)
+
+    params.add_argument(
+        "--params", "-p",
+        help="Numeric parameters to pass to the ANSI escape sequence",
+        nargs="+",
+        type=int
+    )
+
+    color_choices = tuple(COLOR_SCHEME.Color)
+    options_str = ", ".join(map(lambda color: f"\"{color}\"", color_choices))
+    params.add_argument(
+        "--color", "-c",
+        choices=color_choices,
+        help=f"The identifier of the color to use. One of: {options_str}.",
+        metavar="",
+        type=COLOR_SCHEME.Color
+    )
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    ns = get_cli_args()
+    output_name = create_sequence(
+        " ".join(ns.name),
+        *(ns.params or ()),
+        color=ns.color
+    )
+
+    print(rf"[{output_name}]")

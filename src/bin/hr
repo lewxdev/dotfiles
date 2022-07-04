@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from os import get_terminal_size
+
+"""
+`hr` command
+Prints a horizontal rule (hr) on the terminal with optionally specified
+length and symbol. Provides helpful visual for long custom CLI programs.
+"""
+
+
+def create_hr(symbol: str, quantifier: int = None):
+    return symbol * (quantifier or get_terminal_size().columns // len(symbol))
+
+
+def get_cli_args():
+    """Process the provided command-line arguments and return a valid
+    Namespace for the CLI
+    """
+
+    parser = ArgumentParser(description="Produces visual horizontal rule (hr)")
+
+    parser.add_argument(
+        "--symbol", "-s",
+        default="-",
+        help="The string / symbol to build a horizontal rule with",
+    )
+
+    parser.add_argument(
+        "--quantifier", "-q",
+        help="The number of repeats of the provided symbol",
+        type=int
+    )
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    ns = get_cli_args()
+    print(create_hr(ns.symbol, ns.quantifier))

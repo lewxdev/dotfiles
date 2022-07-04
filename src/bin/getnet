@@ -1,0 +1,52 @@
+#!/usr/bin/env python3
+from argparse import ArgumentParser
+from subprocess import Popen, PIPE
+
+"""
+`getnet` command
+Returns a specified available property of the currently connected
+network (its SSID by default).
+"""
+
+
+def do_getnet(property: str):
+    AIRPORT_PATH = "/System/Library/PrivateFrameworks/Apple80211.framework/Resources/airport"
+    process = Popen((AIRPORT_PATH, "-I"), stdout=PIPE)
+    output, error = process.communicate()
+    process.wait()
+
+    network_properties = {}
+    for line in output.decode("utf-8").strip().split("\n"):
+        key, value = map(lambda text: text.strip(), line.split(":"))
+        network_properties[key] = value
+
+    if not error:
+        value = network_properties.get(property)
+        if value:
+            print(value)
+        else:
+            raise SystemExit(f"Error: Couldn't get property \"{property}\"")
+    else:
+        raise SystemExit("Error: Something went wrong :(")
+
+
+def get_cli_args():
+    """Process the provided command-line arguments and return a valid
+    Namespace for the CLI
+    """
+
+    parser = ArgumentParser(description="Gets a property of connected network")
+
+    parser.add_argument(
+        "property",
+        default="SSID",
+        help="The property of the currently connected network to retrieve",
+        nargs="?"
+    )
+
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    ns = get_cli_args()
+    do_getnet(ns.property)
