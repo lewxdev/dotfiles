@@ -1,0 +1,32 @@
+An executable shell script (zsh) that initializes a new macOS machine
+for development with a configurable/complete set of preferred
+applications installations and general configurations
+
+usage: ./install.zsh [options]
+
+options:
+  --help, -h            Display this message and exit
+
+  --brew                Installs and/or updates Homebrew
+                        (learn more: https://brew.sh/)
+
+  --brew-formulae       Installs provided formula identifiers
+                        (see: $BREW_FORMULAE)
+
+  --brew-casks          Installs provided cask identifiers
+                        (see: $BREW_CASKS)
+
+  --brew-cask-drivers   Installs provided cask driver identifiers
+                        (see: $BREW_CASK_DRIVERS)
+
+  --vscode-extensions   Installs provided extension identifiers
+                        (see: $VSCODE_EXTENSIONS)
+
+  --omz                 Installs and/or updates Oh My Zsh
+                        (learn more: https://ohmyz.sh/)
+
+  --omz-plugins         Installs provided plugins for Oh My Zsh
+                        (see: $INSTALL_URIS)
+
+  --symlinks            Creates symbolic links from all valid files to
+                        the respective dotfiles

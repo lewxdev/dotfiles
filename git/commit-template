@@ -1,0 +1,16 @@
+# DEST:~/.commit-template
+#
+# Guided commit message template
+# learn more: https://cbea.ms/git-commit/
+# also see: https://www.freshconsulting.com/atomic-commits/
+#
+# Summarize changes in 50 characters or less (use imperative mood)
+
+
+# (Optional) provide a detailed explanation, focus on the "why" rather
+# than the "how", and address potential consequences
+
+
+# (Optional) provide references to an issue tracker (if applicable)
+# GitHub uses the keywords (close(s|d)?|fix(es|ed)?|resolve(s|d)?)
+# learn more: https://docs.github.com/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword

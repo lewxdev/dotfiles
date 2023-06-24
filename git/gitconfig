@@ -2,43 +2,44 @@
 
 [user]
 	name = J. Lewis
-	email = inquiries.lewis+dev@gmail.com
+	email = 6710419+lewxdev@users.noreply.github.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfHRIgsMtzS02D77/sXvBdXjaf+bmVJss4ifaWSZBhO
+
 [core]
-	excludesfile = ~/.gitignore_global
-[alias] # https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
-	get-origin = remote get-url origin
+	editor = code --wait
 
-# Git URLs
-# HTTPS (User)
-[url "https://github.com/lewxdev/"]
-	insteadOf = gh/@/
-	insteadOf = github/lewxdev/
-[url "https://gitlab.com/lewxdev/"]
-	insteadOf = gl/@/
-	insteadOf = gitlab/lewxdev/
-# SSH (User)
+[init]
+	defaultBranch = main
+
+[commit]
+	gpgsign = true
+	template = ~/.commit-template
+
+[push]
+	autoSetupRemote = true
+
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+
 [url "git@github.com:lewxdev/"]
-	insteadOf = gh/@:
-	insteadOf = github/lewxdev:
-[url "git@gitlab.com:lewxdev"]
-	insteadOf = gl/@:
-	insteadOf = gitlab/lewxdev:
-
-# HTTPS
-[url "https://gist.github.com/"]
-	insteadOf = gist/
-[url "https://github.com/"]
-	insteadOf = gh/
-	insteadOf = github/
-[url "https://gitlab.com/"]
-	insteadOf = gl/
-	insteadOf = gitlab/
-# SSH
-[url "git@gist.github.com:"]
-	insteadOf = gist:
+	insteadOf = gh:@/
+	insteadOf = github:@/
 [url "git@github.com:"]
 	insteadOf = gh:
 	insteadOf = github:
-[url "git@gitlab.com:"]
-	insteadOf = gl:
-	insteadOf = gitlab:
+[url "git@gist.github.com:"]
+	insteadOf = gist:
+[url "https://github.com/lewxdev/"]
+	insteadOf = gh://@/
+	insteadOf = github://@/
+[url "https://github.com/"]
+	insteadOf = gh://
+	insteadOf = github://
+[url "https://gist.github.com/"]
+	insteadOf = gist://
+
+# learn more: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
+[alias]
+	get-origin = remote get-url origin

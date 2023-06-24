@@ -9,9 +9,7 @@ def get_cli_args():
     """Process the provided command-line arguments and return a valid
     Namespace for the CLI
     """
-
     parser = ArgumentParser(description="")
-
     parser.add_argument()
 
     return parser.parse_args()

@@ -3,24 +3,30 @@
 
 # Environment constants...
 
+# 1Password SSH Client
+export SSH_AUTH_SOCK=~/.1password/agent.sock
+
+# Homebrew
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # An associative array of common directories
 # accessed like "${DIR[KEY]}"
 declare -xrA DIR=(
-	# Applications
-	[APPS]=/Applications
-	[PWAS]=~/Applications/Chrome\ Apps.localized
+  # Applications
+  [APPS]=/Applications
+  [PWAS]=~/Applications/Chrome\ Apps.localized
 
-	# Documents
-	[DESK]=~/Desktop
-	[DLS]=~/Downloads
-	[DOCS]=~/Documents
+  # Documents
+  [DESK]=~/Desktop
+  [DLS]=~/Downloads
+  [DOCS]=~/Documents
 
-	# Developer Modules
-	[DEV]=~/Developer
-	[DOTF]=~/dotfiles
-	[SHM]=~/dotfiles/src
-	[SHB]=~/dotfiles/src/bin
-	[SHS]=~/dotfiles/src/scripts
+  # Developer Modules
+  [DEV]=~/Developer
+  [DOTF]=~/dotfiles
+  [SHM]=~/dotfiles/src
+  [SHB]=~/dotfiles/src/bin
+  [SHS]=~/dotfiles/src/scripts
 )
 
 # Paths, etc.
@@ -36,33 +42,33 @@ export VISUAL=$VSCBIN/code
 # pyenv
 local PYENV_DIR=~/.pyenv
 if [[ -d $PYENV_DIR ]]; then
-	export PYENV=$PYENV_DIR
-	export PATH=$PYENV/bin:$PATH
-	eval "$(pyenv init -)"
-	eval "$(pyenv virtualenv-init -)"
+  export PYENV=$PYENV_DIR
+  export PATH=$PYENV/bin:$PATH
+  eval "$(pyenv init -)"
+  eval "$(pyenv virtualenv-init -)"
 fi
 
 # oh-my-zsh
 local OMZ_DIR=~/.oh-my-zsh
 if [[ -d $OMZ_DIR ]]; then
-	export ZSH=$OMZ_DIR
-	source ${DIR[DOTF]}/oh-my-zsh/preferences.zsh
+  export ZSH=$OMZ_DIR
+  source ${DIR[DOTF]}/oh-my-zsh/preferences.zsh
 fi
 
 # Source customizations...
 
 # Ensure all files in "src/bin" are executable
 for bin in $(find ${DIR[SHB]} -type f -not -name "*.*"); do
-	if [[ ! -x $bin ]]; then
-		chmod +x $bin
-	fi
+  if [[ ! -x $bin ]]; then
+    chmod +x $bin
+  fi
 done
 export PATH=${DIR[SHB]}:$PATH
 
 # Source all custom functions, aliases, etc.
 for module in $(find ${DIR[SHM]} -type f -name "*.zsh"); do
-	# Added a conditional to ignore certain files w/ designator
-	if [[ ! $(head -2 $module) =~ "^# SOURCE-IGNORE$" ]]; then
-		source $module
-	fi
+  # Added a conditional to ignore certain files w/ designator
+  if [[ ! $(head -2 $module) =~ "^# SOURCE-IGNORE$" ]]; then
+    source $module
+  fi
 done

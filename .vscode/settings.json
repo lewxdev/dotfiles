@@ -1,3 +1,24 @@
 {
-	"cSpell.ignoreWords": ["dotfiles", "lewxdev"]
+  "files.associations": {
+    ".prettierrc": "yaml",
+    "commit-template": "git-commit"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+
+  "json.schemas": [
+    {
+      "fileMatch": ["vscode/settings.jsonc"],
+      "url": "vscode://schemas/settings/user"
+    }
+  ],
+
+  "yaml.schemas": {
+    "https://json.schemastore.org/prettierrc.json": ".prettierrc"
+  },
+
+  "[plaintext]": {
+    "editor.rulers": [70]
+  }
 }
