@@ -33,6 +33,7 @@ local BREW_CASKS=(
   "google-chrome"
   "google-drive"
   "hyper"
+  "loopback"
   "notion"
   "replacicon"
   "shureplus-motiv"
@@ -50,12 +51,22 @@ local BREW_CASK_DRIVERS=(
 
 local VSCODE_EXTENSIONS=(
   "alexperronnet.spectrum-vscode-icons"
-  "editorconfig.editorconfig"
+  "dbaeumer.vscode-eslint"
+  "eamodio.gitlens"
   "esbenp.prettier-vscode"
+  "figma.figma-vscode-extension"
+  "github.vscode-pull-request-github"
+  "icrawl.discord-vscode"
   "joelcrosby.one-dark-darker"
+  "ms-vsliveshare.vsliveshare"
+  "pflannery.vscode-versionlens"
+  "rangav.vscode-thunder-client"
+  "redhat.vscode-yaml"
   "ritwickdey.liveserver"
   "streetsidesoftware.code-spell-checker"
+  "wallabyjs.quokka-vscode"
   "wix.vscode-import-cost"
+  "yoavbls.pretty-ts-errors"
 )
 
 declare -rA INSTALL_URIS=(
