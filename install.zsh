@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# TODO: Implement argument validation
-# TODO: Add logging to track old symlinks, installations, etc.
-# TODO: Move symlink management to zshrc in order to stay in sync
-# TODO: Implement automatic pushes for related file changes
-
 # Help message
 # this can definitely be done better, but idfk how to do that rn
 if (( $@[(I)--help|-h] )); then
@@ -71,7 +66,7 @@ local VSCODE_EXTENSIONS=(
 
 declare -rA INSTALL_URIS=(
   [homebrew]="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-  [omz]="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+  [omz]="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh"
   [zsh_syntax_highlighting]="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 )
 

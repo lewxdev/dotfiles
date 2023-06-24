@@ -1,10 +1,7 @@
 // DEST:~/.hyper.js
 
 // @ts-check
-
 // Configuration flags: https://hyper.is/#cfg
-/** @todo implement a python script to add new configuration flags to exports */
-/** @todo address configuration path inconsistencies and plugins not being installed */
 
 /** @type {Config} */
 module.exports = {
