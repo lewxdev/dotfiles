@@ -6,6 +6,9 @@
 # 1Password SSH Client
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
+# direnv
+eval "$(direnv hook zsh)"
+
 # Homebrew
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
