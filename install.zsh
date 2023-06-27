@@ -13,6 +13,7 @@ fi
 local BREW_FORMULAE=(
   "android-platform-tools"
   "figlet"
+  "gh"
   "imagemagick"
   "node"
   "nvm"
@@ -21,6 +22,7 @@ local BREW_FORMULAE=(
 
 local BREW_CASKS=(
   "1password"
+  "1password/tap/1password-cli"
   "affinity-designer"
   "cleanmymac"
   "discord"
