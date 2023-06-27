@@ -41,6 +41,11 @@ if ! [[ -d $OP_DIR ]]; then
 fi
 export SSH_AUTH_SOCK=$OP_DIR/agent.sock
 
+# direnv
+if which direnv &>/dev/null; then
+  eval "$(direnv hook zsh)"
+fi
+
 # homebrew (latest)
 local BREW_EXEC=/opt/homebrew/bin/brew
 if [[ -x $BREW_EXEC ]]; then
