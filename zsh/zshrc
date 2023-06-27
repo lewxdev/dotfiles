@@ -3,12 +3,6 @@
 
 # Environment constants...
 
-# 1Password SSH Client
-export SSH_AUTH_SOCK=~/.1password/agent.sock
-
-# Homebrew
-eval "$(/opt/homebrew/bin/brew shellenv)"
-
 # An associative array of common directories
 # accessed like "${DIR[KEY]}"
 declare -xrA DIR=(
@@ -32,12 +26,33 @@ declare -xrA DIR=(
 # Paths, etc.
 local VSCBIN=${DIR[APPS]}/Visual\ Studio\ Code.app/Contents/Resources/app/bin
 export PATH=$PATH:$VSCBIN
-export EDITOR=/usr/bin/nano
-export VISUAL=$VSCBIN/code
+export EDITOR="code --wait"
+export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 # Conditional setup...
-# Setting up tools conditionally based on their installation
-# reduces errors at runtime
+# Allows for multi-device usage where some utilities are not available
+# or configured in the same way as other devices
+
+# 1password
+local OP_DIR=~/.1password
+if ! [[ -d $OP_DIR ]]; then
+  mkdir $OP_DIR
+  ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $OP_DIR/agent.sock
+fi
+export SSH_AUTH_SOCK=$OP_DIR/agent.sock
+
+# homebrew (latest)
+local BREW_EXEC=/opt/homebrew/bin/brew
+if [[ -x $BREW_EXEC ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# oh-my-zsh
+local OMZ_DIR=~/.oh-my-zsh
+if [[ -d $OMZ_DIR ]]; then
+  export ZSH=$OMZ_DIR
+  source ${DIR[DOTF]}/oh-my-zsh/preferences.zsh
+fi
 
 # pyenv
 local PYENV_DIR=~/.pyenv
@@ -46,13 +61,6 @@ if [[ -d $PYENV_DIR ]]; then
   export PATH=$PYENV/bin:$PATH
   eval "$(pyenv init -)"
   eval "$(pyenv virtualenv-init -)"
-fi
-
-# oh-my-zsh
-local OMZ_DIR=~/.oh-my-zsh
-if [[ -d $OMZ_DIR ]]; then
-  export ZSH=$OMZ_DIR
-  source ${DIR[DOTF]}/oh-my-zsh/preferences.zsh
 fi
 
 # Source customizations...
