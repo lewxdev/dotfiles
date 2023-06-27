@@ -1,10 +1,5 @@
 #!/bin/zsh
 
-# TODO: Implement argument validation
-# TODO: Add logging to track old symlinks, installations, etc.
-# TODO: Move symlink management to zshrc in order to stay in sync
-# TODO: Implement automatic pushes for related file changes
-
 # Help message
 # this can definitely be done better, but idfk how to do that rn
 if (( $@[(I)--help|-h] )); then
@@ -33,6 +28,7 @@ local BREW_CASKS=(
   "google-chrome"
   "google-drive"
   "hyper"
+  "loopback"
   "notion"
   "replacicon"
   "shureplus-motiv"
@@ -50,17 +46,27 @@ local BREW_CASK_DRIVERS=(
 
 local VSCODE_EXTENSIONS=(
   "alexperronnet.spectrum-vscode-icons"
-  "editorconfig.editorconfig"
+  "dbaeumer.vscode-eslint"
+  "eamodio.gitlens"
   "esbenp.prettier-vscode"
+  "figma.figma-vscode-extension"
+  "github.vscode-pull-request-github"
+  "icrawl.discord-vscode"
   "joelcrosby.one-dark-darker"
+  "ms-vsliveshare.vsliveshare"
+  "pflannery.vscode-versionlens"
+  "rangav.vscode-thunder-client"
+  "redhat.vscode-yaml"
   "ritwickdey.liveserver"
   "streetsidesoftware.code-spell-checker"
+  "wallabyjs.quokka-vscode"
   "wix.vscode-import-cost"
+  "yoavbls.pretty-ts-errors"
 )
 
 declare -rA INSTALL_URIS=(
   [homebrew]="https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
-  [omz]="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+  [omz]="https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/HEAD/tools/install.sh"
   [zsh_syntax_highlighting]="https://github.com/zsh-users/zsh-syntax-highlighting.git"
 )
 
