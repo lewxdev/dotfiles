@@ -34,21 +34,27 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 # or configured in the same way as other devices
 
 # 1password
-local OP_DIR=~/.1password
-if ! [[ -d $OP_DIR ]]; then
-  mkdir $OP_DIR
-  ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $OP_DIR/agent.sock
-fi
-export SSH_AUTH_SOCK=$OP_DIR/agent.sock
+if brew list 1password &>/dev/null; then
+  local OP_DIR=~/.1password
+  if ! [[ -d $OP_DIR ]]; then
+    mkdir $OP_DIR
+    ln -s ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock $OP_DIR/agent.sock
+  fi
 
-local OP_PLUGINS=~/.config/op/plugins.sh
-if [[ -e $OP_PLUGINS ]]; then
-  source $OP_PLUGINS
+  export SSH_AUTH_SOCK=$OP_DIR/agent.sock
+
+  local OP_PLUGINS=~/.config/op/plugins.sh
+  if [[ -e $OP_PLUGINS ]]; then
+    source $OP_PLUGINS
+  fi
 fi
 
 # direnv
 if which direnv &>/dev/null; then
   eval "$(direnv hook zsh)"
+
+  # we provide our own initial logs
+  export DIRENV_LOG_FORMAT=""
 fi
 
 # homebrew (latest)
