@@ -34,7 +34,7 @@ export SSH_AUTH_SOCK=~/.1password/agent.sock
 # or configured in the same way as other devices
 
 # 1password
-if brew list 1password &>/dev/null; then
+if mdfind -name kMDItemFSName=="1Password.app" | grep . &>/dev/null; then
   local OP_DIR=~/.1password
   if ! [[ -d $OP_DIR ]]; then
     mkdir $OP_DIR
