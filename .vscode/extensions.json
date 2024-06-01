@@ -1,8 +1,0 @@
-// Learn more https://go.microsoft.com/fwlink/?LinkId=827846
-{
-  "recommendations": [
-    "bmalehorn.shell-syntax",
-    "redhat.vscode-yaml",
-    "streetsidesoftware.code-spell-checker"
-  ]
-}
