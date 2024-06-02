@@ -1,0 +1,10 @@
+{
+	"recommendations": [
+		"biomejs.biome",
+		"bmalehorn.shell-syntax",
+		"github.vscode-github-actions",
+		"joshbolduc.commitlint",
+		"streetsidesoftware.code-spell-checker",
+		"yoavbls.pretty-ts-errors"
+	]
+}
