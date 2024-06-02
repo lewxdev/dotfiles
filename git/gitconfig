@@ -7,6 +7,7 @@
 
 [core]
 	editor = code --wait
+	excludesfile = ~/.gitignore
 
 [init]
 	defaultBranch = main
@@ -17,6 +18,9 @@
 
 [push]
 	autoSetupRemote = true
+
+[remote "origin"]
+	prune = true
 
 [gpg]
 	format = ssh
@@ -42,4 +46,26 @@
 
 # learn more: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 [alias]
-	get-origin = remote get-url origin
+	amend = commit --amend
+	unadd = reset HEAD --
+	undo = reset --soft HEAD^
+
+	# get name of default branch
+	# see: https://stackoverflow.com/a/44750379
+	name = ! git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+
+	# checkout default branch
+	main = ! git checkout $(git name)
+
+	# synchronize local with remote
+	# removing merged and deleted branches
+	# see: https://stackoverflow.com/a/38404202
+	sync = ! git main && \
+					 git pull && \
+					 git clean -df && \
+					 git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+
+	# overwrite last commit with staged changes
+	patch = ! git add -A && \
+						git amend --no-edit && \
+						git push --force-with-lease

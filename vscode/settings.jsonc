@@ -3,14 +3,23 @@
 {
   "breadcrumbs.enabled": false,
 
+  "cSpell.enableFiletypes": ["shellscript"],
   "cSpell.userWords": [
+    "direnv",
     "dotenv",
     "dotfiles",
+    "endregion",
+    "envrc",
     "freepik",
+    "habitzu",
     "iosevka",
     "lewxdev",
     "mixins",
+    "parens",
     "pinterest",
+    "tamagui",
+    "tanstack",
+    "trpc",
     "venv",
     "verbage"
   ],
@@ -19,7 +28,7 @@
   "editor.cursorStyle": "block-outline",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.detectIndentation": true,
-  "editor.fontFamily": "'Iosevka Idios', 'Monaco', monospace",
+  "editor.fontFamily": "'Iosevka X', 'Monaco', monospace",
   "editor.fontLigatures": true,
   "editor.fontSize": 20,
   "editor.fontWeight": "500",
@@ -27,7 +36,7 @@
   "editor.insertSpaces": true,
   "editor.lineNumbers": "interval",
   "editor.minimap.enabled": false,
-  "editor.occurrencesHighlight": false,
+  "editor.occurrencesHighlight": "off",
   "editor.renderWhitespace": "trailing",
   "editor.rulers": [80, 100],
   "editor.tabSize": 2,
@@ -41,8 +50,26 @@
   "explorer.confirmDragAndDrop": false,
   "explorer.incrementalNaming": "smart",
 
-  "files.autoSave": "afterDelay",
   "files.enableTrash": false,
+  "files.exclude": {
+    "**/.DS_Store": true,
+    "**/.expo": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.husky/_": true,
+    "**/.next": true,
+    "**/.svn": true,
+    "**/.turbo": true,
+    "**/*-lock.json": true,
+    "**/*-lock.yaml": true,
+    "**/*.example": true,
+    "**/*.sample": true,
+    "**/*.tsbuildinfo": true,
+    "**/CVS": true,
+    "**/next-env.d.ts": true,
+    "**/node_modules": true,
+    "**/Thumbs.db": true
+  },
   "files.hotExit": "off",
   "files.insertFinalNewline": true,
   "files.simpleDialog.enable": true,
@@ -56,6 +83,10 @@
 
   "liveServer.settings.donotShowInfoMsg": true,
   "liveServer.settings.donotVerifyTags": true,
+
+  "liveshare.comments": false,
+  "liveshare.autoShareTerminals": true,
+  "liveshare.launcherClient": "visualStudioCode",
 
   "python.defaultInterpreterPath": "~/.pyenv/versions/3.9.0/bin/python",
   "python.experiments.optOutFrom": ["pythonDeprecatePythonPath"],
@@ -87,7 +118,6 @@
 
   "window.openFoldersInNewWindow": "on",
   "window.restoreWindows": "folders",
-  "window.zoomLevel": 2,
 
   "workbench.colorCustomizations": {
     "activityBar.background": "#14161a",
@@ -96,8 +126,8 @@
     "editor.background": "#14161a",
     "editor.lineHighlightBackground": "#14161a",
     "editor.lineHighlightBorder": "#353944",
-    "editorIndentGuide.activeBackground": "#25282e",
-    "editorIndentGuide.background": "#212329",
+    "editorIndentGuide.activeBackground1": "#25282e",
+    "editorIndentGuide.background1": "#212329",
     "list.activeSelectionBackground": "#14161a",
     "list.focusAndSelectionOutline": "#353944",
     "list.focusOutline": "#353944",
@@ -113,9 +143,8 @@
   },
   "workbench.colorTheme": "One Dark Darker",
   "workbench.editor.tabCloseButton": "off",
-  "workbench.editor.untitled.hint": "hidden",
   "workbench.fontAliasing": "antialiased",
-  "workbench.iconTheme": "spectrum-vscode-icons",
+  "workbench.iconTheme": "glyph.legacy",
   "workbench.settings.editor": "json",
   "workbench.startupEditor": "newUntitledFile",
 
@@ -130,5 +159,15 @@
   "[python]": {
     "editor.rulers": [72, 79],
     "editor.tabSize": 4
-  }
+  },
+  "git.confirmSync": false,
+  "tabnine.experimentalAutoImports": true,
+  "gitlens.gitCommands.skipConfirmations": ["fetch:command", "switch:command"],
+  "githubPullRequests.pullBranch": "never",
+  "gitlens.views.branches.branches.layout": "list",
+  "cSpell.enabled": true,
+  "window.zoomLevel": 2,
+  "vscode-autosave.disableProgressNotifications": true,
+  "workbench.editor.tabActionCloseVisibility": false,
+  "workbench.editor.empty.hint": "hidden"
 }

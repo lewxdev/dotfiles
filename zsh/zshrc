@@ -17,21 +17,29 @@ declare -xrA DIR=(
 
   # Developer Modules
   [DEV]=~/Developer
-  [DOTF]=~/dotfiles
-  [SHM]=~/dotfiles/src
-  [SHB]=~/dotfiles/src/bin
-  [SHS]=~/dotfiles/src/scripts
+  [DOTF]=~/projects/dotfiles
+  [SHM]=~/projects/dotfiles/src
+  [SHB]=~/projects/dotfiles/src/bin
+  [SHS]=~/projects/dotfiles/src/scripts
 )
 
 # Paths, etc.
-local VSCBIN=${DIR[APPS]}/Visual\ Studio\ Code.app/Contents/Resources/app/bin
-export PATH=$PATH:$VSCBIN
+export PATH=${DIR[APPS]}/Visual\ Studio\ Code.app/Contents/Resources/app/bin:$PATH
+export PATH=/opt/homebrew/opt/openjdk@17/bin:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
+
 export EDITOR="code --wait"
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
 # Conditional setup...
 # Allows for multi-device usage where some utilities are not available
 # or configured in the same way as other devices
+
+# homebrew (latest)
+local BREW_EXEC=/opt/homebrew/bin/brew
+if [[ -x $BREW_EXEC ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
 
 # 1password
 if mdfind -name kMDItemFSName=="1Password.app" | grep . &>/dev/null; then
@@ -57,11 +65,17 @@ if which direnv &>/dev/null; then
   export DIRENV_LOG_FORMAT=""
 fi
 
-# homebrew (latest)
-local BREW_EXEC=/opt/homebrew/bin/brew
-if [[ -x $BREW_EXEC ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"
+# nvm
+export NVM_DIR=~/.nvm
+if ! [[ -d $NVM_DIR ]]; then
+  mkdir $NVM_DIR
 fi
+
+local NVM_OPT=/opt/homebrew/opt/nvm
+# This loads nvm
+[ -s "$NVM_OPT/nvm.sh" ] && source $NVM_OPT/nvm.sh
+# This loads nvm bash_completion
+[ -s "$NVM_OPT/etc/bash_completion.d/nvm" ] && source $NVM_OPT/etc/bash_completion.d/nvm
 
 # oh-my-zsh
 local OMZ_DIR=~/.oh-my-zsh
@@ -71,12 +85,10 @@ if [[ -d $OMZ_DIR ]]; then
 fi
 
 # pyenv
-local PYENV_DIR=~/.pyenv
-if [[ -d $PYENV_DIR ]]; then
-  export PYENV=$PYENV_DIR
-  export PATH=$PYENV/bin:$PATH
+local PYENV_ROOT=~/.pyenv
+if [[ -d $PYENV_ROOT/bin ]]; then
+  export PATH="$PYENV_ROOT/bin:$PATH"
   eval "$(pyenv init -)"
-  eval "$(pyenv virtualenv-init -)"
 fi
 
 # Source customizations...
@@ -96,3 +108,22 @@ for module in $(find ${DIR[SHM]} -type f -name "*.zsh"); do
     source $module
   fi
 done
+
+# pnpm
+export PNPM_HOME="/Users/lewx/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+
+# volta
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
+# android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
+
+# tabtab source for packages
+# uninstall by removing these lines
+[[ -f ~/.config/tabtab/zsh/__tabtab.zsh ]] && . ~/.config/tabtab/zsh/__tabtab.zsh || true
