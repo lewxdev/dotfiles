@@ -1,0 +1,134 @@
+// DEST:~/Library/Application Support/Code/User/settings.json
+
+{
+	"breadcrumbs.enabled": false,
+
+	"cSpell.enableFiletypes": ["*"],
+	"cSpell.userWords": [
+		"biomejs",
+		"endregion",
+		"freepik",
+		"iosevka",
+		"lewxdev",
+		"liveshare",
+		"lockb",
+		"parens",
+		"pinterest",
+		"tamagui",
+		"tanstack",
+		"trpc",
+		"tsbuildinfo"
+	],
+
+	"diffEditor.ignoreTrimWhitespace": false,
+
+	"editor.bracketPairColorization.enabled": false,
+	"editor.cursorStyle": "block-outline",
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.fontFamily": "'Iosevka X', monospace",
+	"editor.fontLigatures": true,
+	"editor.fontSize": 18,
+	"editor.fontWeight": 500,
+	"editor.minimap.enabled": false,
+	"editor.renderWhitespace": "trailing",
+	"editor.rulers": [80, 100],
+	"editor.tabSize": 2,
+
+	"explorer.confirmDelete": false,
+	"explorer.confirmDragAndDrop": false,
+	"explorer.incrementalNaming": "smart",
+
+	"files.autoSave": "afterDelay",
+	"files.autoSaveWhenNoErrors": true,
+	"files.exclude": {
+		"**/.husky/_": false,
+		"**/.{expo,next,turbo}": false,
+		"**/*-lock.{json,yaml}": false,
+		"**/*.{example,sample}": false,
+		"**/*.tsbuildinfo": false,
+		"**/bun.lockb": false,
+		"**/next-env.d.ts": false,
+		"**/node_modules": false,
+		"**/.DS_Store": false,
+		"**/.{git,hg,svn}": false,
+		"**/CVS": false,
+		"**/Thumbs.db": false
+	},
+	"files.hotExit": "onExitAndWindowClose",
+	"files.simpleDialog.enable": true,
+
+	"git.confirmSync": false,
+
+	"github.copilot.enable": {
+		"*": true
+	},
+
+	"gitlens.gitCommands.skipConfirmations": ["fetch:command", "switch:command"],
+	"gitlens.views.branches.branches.layout": "list",
+
+	"javascript.updateImportsOnFileMove.enabled": "always",
+
+	"json.format.keepLines": true,
+
+	"liveServer.settings.donotShowInfoMsg": true,
+	"liveServer.settings.donotVerifyTags": true,
+
+	"liveshare.comments": false,
+	"liveshare.autoShareTerminals": true,
+	"liveshare.launcherClient": "visualStudioCode",
+
+	"remote.SSH.remotePlatform": {
+		"MORPHEUS/local": "linux",
+		"MORPHEUS/remote": "linux"
+	},
+	"remote.SSH.useLocalServer": false,
+
+	"task.problemMatchers.neverPrompt": {
+		"shell": true
+	},
+
+	"terminal.integrated.cursorBlinking": true,
+	"terminal.integrated.fontFamily": "'Iosevka Term X', monospace",
+	"terminal.integrated.fontSize": 16,
+
+	"window.restoreWindows": "preserve",
+	"window.zoomLevel": 1.8,
+
+	"workbench.colorCustomizations": {
+		// color theme: One Dark Darker (it's not dark enough!)
+		"activityBar.background": "#14161a",
+		"activityBar.border": "#353944",
+		"button.background": "#272a32",
+		"editor.background": "#14161a",
+		"editor.lineHighlightBackground": "#14161a",
+		"editor.lineHighlightBorder": "#353944",
+		"editorIndentGuide.activeBackground1": "#25282e",
+		"editorIndentGuide.background1": "#212329",
+		"list.activeSelectionBackground": "#14161a",
+		"list.focusAndSelectionOutline": "#353944",
+		"list.focusOutline": "#353944",
+		"list.hoverBackground": "#101114",
+		"list.inactiveSelectionBackground": "#212329",
+		"sideBar.background": "#14161a",
+		"sideBar.border": "#353944",
+		"sideBarSectionHeader.background": "#14161a",
+		"statusBar.border": "#353944",
+		"tab.activeBackground": "#14161a",
+		"tab.hoverBackground": "#101114",
+		"titleBar.border": "#353944"
+	},
+	"workbench.colorTheme": "One Dark Darker",
+	"workbench.editor.empty.hint": "hidden",
+	"workbench.editor.tabActionCloseVisibility": false,
+	"workbench.fontAliasing": "antialiased",
+	"workbench.iconTheme": "glyph.legacy",
+	"workbench.settings.editor": "json",
+	"workbench.startupEditor": "readme",
+
+	"[python]": {
+		// PEP 8
+		// see: https://peps.python.org/pep-0008/
+		"editor.rulers": [72, 79],
+		"editor.tabSize": 4
+	}
+}

@@ -11,5 +11,12 @@
 	"files.associations": {
 		"gitignore": "gitignore",
 		"gitmessage": "git-commit"
-	}
+	},
+
+	"json.schemas": [
+		{
+			"fileMatch": ["settings.jsonc"],
+			"url": "vscode://schemas/settings/user"
+		}
+	]
 }

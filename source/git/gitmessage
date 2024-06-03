@@ -1,0 +1,39 @@
+# DEST:~/.config/git/commit-template
+#
+# guided commit message template
+# see:
+#   1. https://cbea.ms/git-commit/
+#   2. https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733
+#   3. https://www.conventionalcommits.org/en/v1.0.0/#summary
+#
+# TITLE
+# an imperative summary of the change in 50 characters or less
+# think: "if applied, this commit will <description>"
+
+# <type>[optional scope]: <description>
+# primary conventional commit types:
+#   * fix: a bug fix (PATCH)
+#   * feat: a new user-facing feature (MINOR)
+# secondary types:
+#   * build: changes to the build or external dependencies
+#   * ci: changes to CI configuration files and scripts
+#   * docs: changes to documentation
+#   * perf: changes that improve performance
+#   * refactor: changes that neither fix a bug nor add a feature
+#   * style: changes that do not affect the meaning of the code
+#   * test: adding missing tests or correcting existing tests
+# see: https://github.com/angular/angular/blob/main/CONTRIBUTING.md#type
+
+# BODY
+# (optional) a detailed explanation of the change, wrapped to 72 characters
+
+# * focus on "why" rather than "how"
+# * address potential consequences
+# * leave out "how" the change was implemented
+
+# FOOTER - (optional) metadata
+
+# may include "BREAKING CHANGE: <description>" for breaking changes and
+# references, github uses the keywords "closes", "fixes", and "resolves"
+# (e.g. "closes #123")
+# see: https://docs.github.com/issues/tracking-your-work-with-issues/linking-a-pull-request-to-an-issue#linking-a-pull-request-to-an-issue-using-a-keyword

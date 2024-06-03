@@ -1,0 +1,128 @@
+#!/usr/bin/env zsh
+# DEST:~/.zshrc
+
+# 1password
+if test -e /Applications/1Password.app; then
+	export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+
+	if test -e ~/.config/op/plugins.sh; then
+		source ~/.config/op/plugins.sh
+	fi
+fi
+
+# android
+# see: https://developer.android.com/tools/variables
+if test -d ~/Library/Android/sdk; then
+	export ANDROID_HOME=~/Library/Android/sdk
+	export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
+	# export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
+fi
+
+# homebrew `brew` (for macOS arm64)
+# see: https://brew.sh/
+if test -x /opt/homebrew/bin/brew && ! command -v brew &> /dev/null; then
+	eval "$(/opt/homebrew/bin/brew shellenv)"
+fi
+
+# omz
+# see: https://ohmyz.sh/
+if test -d ~/.oh-my-zsh; then
+	# the theme to load
+  # * `"random"` will set random theme when oh-my-zsh is loaded
+  # * the random theme is stored in `$RANDOM_THEME`
+  # see: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+  ZSH_THEME=bureau
+
+  # a list of themes to pick from when loading at random
+  # * setting this variable when ZSH_THEME=random will cause zsh to load a theme
+  #   from this variable instead of looking in `$ZSH/themes/`
+  # * if set to an empty array, this variable will have no effect
+  # ZSH_THEME_RANDOM_CANDIDATES=( robbyrussell agnoster )
+
+  # whether to use case-sensitive completion
+  # CASE_SENSITIVE=true
+
+  # whether to use hyphen-insensitive completion (make _ and - interchangeable)
+  # HYPHEN_INSENSITIVE=true
+  # CASE_SENSITIVE=false
+
+  # changes the auto-update behavior
+  # zstyle ':omz:update' mode disabled  # disable automatic updates
+  # zstyle ':omz:update' mode auto      # update automatically without asking
+  zstyle ':omz:update' mode reminder  # just remind me to update when it's time
+
+  # how often to auto-update (in days)
+  # zstyle ':omz:update' frequency 13
+
+  # uncomment if pasting URLs and other text is messed up
+  # DISABLE_MAGIC_FUNCTIONS=true
+
+  # whether to disable colors in ls
+  # DISABLE_LS_COLORS=true
+
+  # whether to disable auto-setting terminal title
+  # DISABLE_AUTO_TITLE=true
+
+  # whether to enable command auto-correction
+  # ENABLE_CORRECTION=true
+
+  # whether to display red dots whilst waiting for completion
+  # * can also be set to another string to override the default red dots
+  #   e.g. `COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"`
+  # * ⚠️ this setting can cause issues with multiline prompts in zsh < 5.7.1
+  #   see: https://github.com/ohmyzsh/ohmyzsh/issues/5765
+  # COMPLETION_WAITING_DOTS=true
+
+  # whether to disable marking untracked files under VCS as dirty
+  # (this makes repository status check for large repositories much faster)
+  # DISABLE_UNTRACKED_FILES_DIRTY=true
+
+  # whether to change the execution timestamp shown in the command history
+  # * can also be set to a custom format using `strftime` or one of:
+  #   * "mm/dd/yyyy"
+  #   * "dd.mm.yyyy"
+  #   * "yyyy-mm-dd"
+  # HIST_STAMPS="mm/dd/yyyy"
+
+  # the path to a custom folder (defaults to `$ZSH/custom`)
+  # ZSH_CUSTOM=/path/to/new-custom-folder
+
+  # plugins to load
+  # * standard plugins can be found in `$ZSH/plugins/`
+  # * custom plugins may be added to `$ZSH_CUSTOM/plugins/`
+  # * too many plugins slow down shell startup
+  # see: https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
+  plugins=( git zsh-syntax-highlighting )
+
+  export ZSH=~/.oh-my-zsh
+  source $ZSH/oh-my-zsh.sh
+fi
+
+# pyenv
+# see: https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv
+if test -d ~/.pyenv; then
+	export PYENV_ROOT=~/.pyenv
+	export PATH=$PYENV_ROOT/bin:$PATH
+	eval "$(pyenv init -)"
+fi
+
+# tabtab
+# see: https://github.com/denosaurs/tabtab
+# (tbh idk how this got here 🤷)
+if test -e ~/.config/tabtab/zsh/__tabtab.zsh; then
+	source ~/.config/tabtab/zsh/__tabtab.zsh
+fi
+
+# volta
+# see: https://docs.volta.sh/guide/getting-started
+if test -d ~/.volta; then
+	export VOLTA_HOME=~/.volta
+	export PATH=$VOLTA_HOME/bin:$PATH
+fi
+
+# vscode
+# see: https://code.visualstudio.com/docs/setup/mac
+if test -e /Applications/Visual\ Studio\ Code.app && ! command -v code &> /dev/null; then
+  ln -s /Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin/code /usr/local/bin/code
+  export EDITOR="code --wait"
+fi
