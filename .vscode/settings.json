@@ -1,22 +1,18 @@
 {
-	"cSpell.words": ["dotfiles"],
+  "cSpell.words": ["dotfiles"],
 
-	"editor.codeActionsOnSave": {
-		"quickfix.biome": "explicit",
-		"source.organizeImports.biome": "explicit"
-	},
-	"editor.defaultFormatter": "biomejs.biome",
-	"editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
 
-	"files.associations": {
-		"gitignore": "gitignore",
-		"gitmessage": "git-commit"
-	},
+  "files.associations": {
+    "gitignore": "gitignore",
+    "gitmessage": "git-commit"
+  },
 
-	"json.schemas": [
-		{
-			"fileMatch": ["settings.jsonc"],
-			"url": "vscode://schemas/settings/user"
-		}
-	]
+  "json.schemas": [
+    {
+      "fileMatch": ["source/vscode/settings.jsonc"],
+      "url": "vscode://schemas/settings/user"
+    }
+  ]
 }

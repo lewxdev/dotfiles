@@ -1,70 +1,70 @@
 # DEST:~/.config/git/config
 
 [user]
-	name = J. Lewis
-	email = 6710419+lewxdev@users.noreply.github.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfHRIgsMtzS02D77/sXvBdXjaf+bmVJss4ifaWSZBhO
+  name = J. Lewis
+  email = 6710419+lewxdev@users.noreply.github.com
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGfHRIgsMtzS02D77/sXvBdXjaf+bmVJss4ifaWSZBhO
 
 [core]
-	editor = code --wait
-	excludesfile = ~/.config/git/ignore
+  editor = code --wait
+  excludesfile = ~/.config/git/ignore
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [commit]
-	gpgsign = true
-	template = ~/.config/git/commit-template
+  gpgsign = true
+  template = ~/.config/git/commit-template
 
 [push]
-	autoSetupRemote = true
+  autoSetupRemote = true
 
 [remote "origin"]
-	prune = true
+  prune = true
 
 [gpg]
-	format = ssh
+  format = ssh
 [gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+  program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 
 [url "git@github.com:lewxdev/"]
-	insteadOf = gh:@/
-	insteadOf = github:@/
+  insteadOf = gh:@/
+  insteadOf = github:@/
 [url "git@github.com:"]
-	insteadOf = gh:
-	insteadOf = github:
+  insteadOf = gh:
+  insteadOf = github:
 [url "git@gist.github.com:"]
-	insteadOf = gist:
+  insteadOf = gist:
 [url "https://github.com/lewxdev/"]
-	insteadOf = gh://@/
-	insteadOf = github://@/
+  insteadOf = gh://@/
+  insteadOf = github://@/
 [url "https://github.com/"]
-	insteadOf = gh://
-	insteadOf = github://
+  insteadOf = gh://
+  insteadOf = github://
 [url "https://gist.github.com/"]
-	insteadOf = gist://
+  insteadOf = gist://
 
 # learn more: https://git-scm.com/book/en/v2/Git-Basics-Git-Aliases
 [alias]
-	amend = commit --amend
-	unadd = reset HEAD --
-	undo = reset --soft HEAD^
+  amend = commit --amend
+  unadd = reset HEAD --
+  undo = reset --soft HEAD^
 
-	# get name of default branch
-	# see: https://stackoverflow.com/a/44750379
-	name = ! git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+  # get name of default branch
+  # see: https://stackoverflow.com/a/44750379
+  name = ! git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
 
-	# checkout default branch
-	main = ! git checkout $(git name)
+  # checkout default branch
+  main = ! git checkout $(git name)
 
-	# synchronize local with remote
-	# removing merged and deleted branches
-	# see: https://stackoverflow.com/a/38404202
-	sync = ! git main && \
-					 git pull && \
-					 git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
+  # synchronize local with remote
+  # removing merged and deleted branches
+  # see: https://stackoverflow.com/a/38404202
+  sync = ! git main && \
+           git pull && \
+           git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -d
 
-	# overwrite last commit with staged changes
-	patch = ! git add -A && \
-						git amend --no-edit && \
-						git push --force-with-lease
+  # overwrite last commit with staged changes
+  patch = ! git add -A && \
+            git amend --no-edit && \
+            git push --force-with-lease

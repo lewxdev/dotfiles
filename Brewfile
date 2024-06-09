@@ -1,9 +1,8 @@
-tap "1password/tap"
-tap "homebrew/bundle"
-tap "withgraphite/tap"
-
+brew "codecrafters-io/tap/codecrafters"
 brew "figlet"
+brew "fzf"
 brew "gh"
+brew "gum"
 brew "imagemagick"
 brew "jq"
 brew "openjdk"

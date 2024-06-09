@@ -3,31 +3,37 @@
 
 # 1password
 if test -e /Applications/1Password.app; then
-	export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
+  export SSH_AUTH_SOCK=~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 
-	if test -e ~/.config/op/plugins.sh; then
-		source ~/.config/op/plugins.sh
-	fi
+  if test -e ~/.config/op/plugins.sh; then
+    source ~/.config/op/plugins.sh
+  fi
 fi
 
 # android
 # see: https://developer.android.com/tools/variables
 if test -d ~/Library/Android/sdk; then
-	export ANDROID_HOME=~/Library/Android/sdk
-	export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
-	# export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
+  export ANDROID_HOME=~/Library/Android/sdk
+  export PATH=$ANDROID_HOME/emulator:$ANDROID_HOME/platform-tools:$PATH
+  # export PATH=$ANDROID_HOME/tools:$ANDROID_HOME/tools/bin:$PATH
+fi
+
+# fzf
+# see: https://junegunn.github.io/fzf/installation/#setting-up-shell-integration
+if command -v fzf &> /dev/null; then
+  source <(fzf --zsh)
 fi
 
 # homebrew `brew` (for macOS arm64)
 # see: https://brew.sh/
 if test -x /opt/homebrew/bin/brew && ! command -v brew &> /dev/null; then
-	eval "$(/opt/homebrew/bin/brew shellenv)"
+  eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # omz
 # see: https://ohmyz.sh/
 if test -d ~/.oh-my-zsh; then
-	# the theme to load
+  # the theme to load
   # * `"random"` will set random theme when oh-my-zsh is loaded
   # * the random theme is stored in `$RANDOM_THEME`
   # see: https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
@@ -101,23 +107,23 @@ fi
 # pyenv
 # see: https://github.com/pyenv/pyenv?tab=readme-ov-file#set-up-your-shell-environment-for-pyenv
 if test -d ~/.pyenv; then
-	export PYENV_ROOT=~/.pyenv
-	export PATH=$PYENV_ROOT/bin:$PATH
-	eval "$(pyenv init -)"
+  export PYENV_ROOT=~/.pyenv
+  export PATH=$PYENV_ROOT/bin:$PATH
+  eval "$(pyenv init -)"
 fi
 
 # tabtab
 # see: https://github.com/denosaurs/tabtab
 # (tbh idk how this got here 🤷)
 if test -e ~/.config/tabtab/zsh/__tabtab.zsh; then
-	source ~/.config/tabtab/zsh/__tabtab.zsh
+  source ~/.config/tabtab/zsh/__tabtab.zsh
 fi
 
 # volta
 # see: https://docs.volta.sh/guide/getting-started
 if test -d ~/.volta; then
-	export VOLTA_HOME=~/.volta
-	export PATH=$VOLTA_HOME/bin:$PATH
+  export VOLTA_HOME=~/.volta
+  export PATH=$VOLTA_HOME/bin:$PATH
 fi
 
 # vscode

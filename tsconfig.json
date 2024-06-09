@@ -1,9 +1,0 @@
-{
-	"extends": ["@tsconfig/bun", "@tsconfig/strictest"],
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@/*": ["./*"]
-		}
-	}
-}
